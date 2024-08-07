@@ -1,6 +1,6 @@
 # Single-Decree Paxos
 
-## The problem of finding consensus
+## Solving consensus
 
 Implementation of the Single-Decree-Paxos, a consensus algorithm:
 
