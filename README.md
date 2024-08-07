@@ -2,7 +2,7 @@
 
 ## Solving consensus
 
-Implementation of the Single-Decree-Paxos, a consensus algorithm:
+Implementation of Single-Decree-Paxos, a consensus algorithm:
 
 - [The Part-Time Parliament](https://lamport.azurewebsites.net/pubs/lamport-paxos.pdf)
 - [Paxos Made Simple](https://lamport.azurewebsites.net/pubs/paxos-simple.pdf)
