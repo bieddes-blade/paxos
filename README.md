@@ -1,33 +1,33 @@
 # Single-Decree Paxos
 
-## Задача консенсуса
+## The problem of finding consensus
 
-Реализация алгоритма _Single-Decree-Paxos_ для решения консенсуса:
+Implementation of the Single-Decree-Paxos, a consensus algorithm:
 
 - [The Part-Time Parliament](https://lamport.azurewebsites.net/pubs/lamport-paxos.pdf)
 - [Paxos Made Simple](https://lamport.azurewebsites.net/pubs/paxos-simple.pdf)
-- [Формальная спецификация на TLA+](https://github.com/tlaplus/Examples/blob/master/specifications/Paxos/Paxos.tla)
+- [Formal specification in TLA+](https://github.com/tlaplus/Examples/blob/master/specifications/Paxos/Paxos.tla)
 
-### Свойства
+### Features
 
-| Свойство | Описание |
+| Feature | Description |
 | - | - |
-| _Agreement_ | Все вызовы `Propose` возвращают одно и то же значение. |
-| _Validity_ | Возвращать можно только одно из предложенных значений. |
-| _Termination_ | Каждый вызов `Propose` должен завершаться. |
+| Agreement | All `Propose` calls return the same value. |
+| Validity | Only values that have been proposed can be returned. |
+| Termination | Every `Propose` call mush finish working at some point. |
 
-См. [SafetyChecker](./consensus/checker.hpp).
+As per [SafetyChecker](./consensus/checker.hpp).
 
-## Роли
+## Roles
 
-В алгоритме Paxos выделяются следующие _роли_:
+The Paxos algorithm distinguishes the following roles:
 
-* _Proposer_ – активная роль, координирует выбор значения
-* _Acceptor_ - пассивная роль, голосует за (или отвергает) предложения, выдвигаемые _Proposer_-ами
-* _Learner_ – опциональная роль, отслеживает отданные _Acceptor_-ами голоса
+* _Proposer_ – an active role, coordinates the choice of a value
+* _Acceptor_ - a passive role, votes for (or rejects) proposals put forward by Proposers
+* _Learner_ – an optional role, tracks votes cast by Acceptors
 
-### Замечание
+### Notes
 
-Алгоритм Paxos требует, чтобы группировка acceptor-ов была зафиксирована (они образуют кворумы), но допускает произвольное число proposer-ов.
+The Paxos algorithm requires that the grouping of acceptors be fixed (they form quorums), but allows an arbitrary number of proposers.
 
-Каждый новый RPC `Consensus.Propose` – это появление нового proposer-а.
+Each new RPC `Consensus.Propose` is a creation of a new proposer.
